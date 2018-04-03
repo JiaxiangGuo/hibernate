@@ -15,4 +15,8 @@ public class HibernateUtil {
 	public static Session getSession(){
 		return FACTORY.openSession();
 	}
+	public static Session getCurrentSession(){
+		//从ThreadLocal类中获取session对象
+		return FACTORY.getCurrentSession();
+	}
 }
