@@ -46,5 +46,9 @@ public class CustomerDao {
 		session.close();
 		return list;
 	}
+	public Customer findCustomer(Long id) {
+		Session session = HibernateUtil.getCurrentSession();
+		return session.get(Customer.class, id);
+	}
 
 }
