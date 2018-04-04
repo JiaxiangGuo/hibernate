@@ -63,10 +63,44 @@ public class Demo1 {
 		session.save(l2);
 		tr.commit();
 		
-		
-		
-		
-		
 	}
-	
+	@Test
+	public void run3(){
+		//级联保存的方式保存客户
+		Session session = HibernateUtil.getSession();
+		Transaction tr = session.beginTransaction();
+		//创建一个客户
+		Customer c1 = new Customer();
+		c1.setCust_name("客户");
+		//创建两个联系人
+		Linkman l1 = new Linkman();
+		l1.setLkm_name("联系人1");
+		Linkman l2 = new Linkman();
+		l2.setLkm_name("联系人2");
+		//只需单向关联，在CUstomer配置文件中配置cascade属性为save-update，方向性
+		c1.getLinkmans().add(l1);
+		c1.getLinkmans().add(l2);
+		session.save(c1);
+		tr.commit();
+	}
+	@Test
+	public void run4(){
+		//级联保存的方式保存客户
+		Session session = HibernateUtil.getSession();
+		Transaction tr = session.beginTransaction();
+		//创建一个客户
+		Customer c1 = new Customer();
+		c1.setCust_name("客户");
+		//创建两个联系人
+		Linkman l1 = new Linkman();
+		l1.setLkm_name("联系人1");
+		Linkman l2 = new Linkman();
+		l2.setLkm_name("联系人2");
+		//只需单向关联，在Linkman配置文件中配置cascade属性为save-update，方向性
+		l1.setCustomer(c1);
+		l2.setCustomer(c1);
+		session.save(l1);
+		session.save(l2);
+		tr.commit();
+	}
 }
