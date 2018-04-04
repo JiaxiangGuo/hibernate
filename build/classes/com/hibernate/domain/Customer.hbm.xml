@@ -23,7 +23,7 @@
 		<!-- 配置一方 
 		name:集合名称
 		-->
-		<set name="linkmans" cascade="save-update">
+		<set name="linkmans" cascade="save-update, delete">
 			<!-- 需要子标签 -->
 			<!-- column：外键的字段 -->
 			<key column="lkm_cust_id"></key>

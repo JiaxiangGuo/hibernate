@@ -103,4 +103,16 @@ public class Demo1 {
 		session.save(l2);
 		tr.commit();
 	}
+	@Test
+	public void run5(){
+		//Hibernate级联删除客户及联系人，在单表配置cascade delete
+		Session session = HibernateUtil.getSession();
+		Transaction tr = session.beginTransaction();
+		//获取一个客户
+		Customer c1 = session.get(Customer.class, 103L);//103为客户id
+		//删除客户
+		session.delete(c1);
+	
+		tr.commit();
+	}
 }
