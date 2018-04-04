@@ -20,5 +20,14 @@
 		<property name="cust_linkman" column="cust_linkman"></property>
 		<property name="cust_phone" column="cust_phone"></property>
 		<property name="cust_mobile" column="cust_mobile"></property>
+		<!-- 配置一方 
+		name:集合名称
+		-->
+		<set name="linkmans">
+			<!-- 需要子标签 -->
+			<!-- column：外键的字段 -->
+			<key column="lkm_cust_id"></key>
+			<one-to-many class="com.hibernate.domain.Linkman"/>
+		</set>
 	</class>
 </hibernate-mapping>

@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 
 import com.hibernate.domain.Customer;
+import com.hibernate.domain.Linkman;
 import com.hibernate.domain.User;
 import com.hibernate.utils.HibernateUtil;
 
@@ -35,6 +36,37 @@ public class Demo1 {
 		criteria.add(Restrictions.eq("age", 38));
 		//有条件查询条件匹配的数据，没有条件查询所有
 		List<User> list = criteria.list();
+	}
+	@Test
+	public void run2(){
+		//双向关联的方式保存客户
+		Session session = HibernateUtil.getSession();
+		Transaction tr = session.beginTransaction();
+		//创建一个客户
+		Customer c1 = new Customer();
+		c1.setCust_name("客户");
+		//创建两个联系人
+		Linkman l1 = new Linkman();
+		l1.setLkm_name("联系人1");
+		Linkman l2 = new Linkman();
+		l2.setLkm_name("联系人2");
+		
+		//双向关联
+		c1.getLinkmans().add(l1);
+		c1.getLinkmans().add(l2);
+		
+		l1.setCustomer(c1);
+		l2.setCustomer(c1);
+		
+		session.save(c1);
+		session.save(l1);
+		session.save(l2);
+		tr.commit();
+		
+		
+		
+		
+		
 	}
 	
 }

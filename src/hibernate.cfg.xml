@@ -26,5 +26,6 @@
 		<!-- 加载映射 -->
 		<mapping resource="com/hibernate/domain/Customer.hbm.xml"/>
 		<mapping resource="com/hibernate/domain/User.hbm.xml"/>
+		<mapping resource="com/hibernate/domain/Linkman.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

@@ -1,5 +1,8 @@
 package com.hibernate.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer {
 	private Long cust_id;
 	private String cust_name;
@@ -13,7 +16,17 @@ public class Customer {
 	private String cust_linkman;
 	private String cust_phone;
 	private String cust_mobile;
+	//Hibernate框架默认的集合是set集合，集合必须自己手动初始化
+	private Set<Linkman> linkmans = new HashSet<Linkman>();
 	
+	public Set<Linkman> getLinkmans() {
+		return linkmans;
+	}
+
+	public void setLinkmans(Set<Linkman> linkmans) {
+		this.linkmans = linkmans;
+	}
+
 	public Long getCust_id() {
 		return cust_id;
 	}
