@@ -1,7 +1,10 @@
 package com.hibernate.service;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 
 import com.hibernate.dao.CustomerDao;
 import com.hibernate.dao.LinkmanDao;
@@ -27,6 +30,20 @@ public class LinkmanService {
 		}
 		
 		
+	}
+
+	public List<Linkman> findList(DetachedCriteria criteria) {
+		//开启事务
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		try {
+			List<Linkman> list = new LinkmanDao().findList(criteria);
+			tr.commit();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
